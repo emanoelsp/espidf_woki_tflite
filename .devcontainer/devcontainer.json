@@ -1,0 +1,4 @@
+{
+  "name": "ESP-IDF",
+  "image": "espressif/idf:latest"
+}
