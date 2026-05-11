@@ -8,11 +8,11 @@
 
 ## O que foi feito
 
-Este projeto reproduz o exemplo clássico **Hello World** do TensorFlow Lite Micro. O objetivo é rodar uma rede neural diretamente em um microcontrolador — sem sistema operacional, sem sistema de arquivos, com pouquíssima memória disponível.
+Este projeto reproduz o exemplo **Hello World** do TensorFlow Lite Micro, exposto na aula. O objetivo é rodar uma rede neural diretamente em um microcontrolador, sem sistema operacional, sem sistema de arquivos, com pouquíssima memória disponível.
 
-A tarefa da rede é simples: dado um valor de entrada `x`, prever `y = sin(x)`. Ao longo do tempo, o microcontrolador percorre os valores de 0 até 2π repetidamente, gerando uma onda senoidal ponto a ponto.
+A tarefa da rede é: dado um valor de entrada `x`, prever `y = sin(x)`. Ao longo do tempo, o microcontrolador percorre os valores de 0 até 2π repetidamente, gerando uma onda senoidal ponto a ponto.
 
-O projeto foi executado no simulador **Wokwi**, que emula o hardware sem precisar de uma placa física.
+O projeto foi executado no simulador **Wokwi**.
 
 ---
 
@@ -24,7 +24,7 @@ A rede neural foi treinada para aproximar a função seno. Ela é composta por t
 - **Camada 2:** 16 neurônios com ativação ReLU  
 - **Camada 3:** 1 neurônio de saída (valor contínuo)
 
-Após o treinamento, o modelo foi convertido para o formato **TFLite** e quantizado em **INT8** — uma técnica que reduz os pesos de 32 bits para 8 bits, tornando o modelo muito mais leve. O resultado final ocupa apenas **3,4 KB**, o suficiente para caber na memória flash de um microcontrolador.
+Após o treinamento, o modelo foi convertido para o formato **TFLite** e quantizado em **INT8**, uma técnica que reduz os pesos de 32 bits para 8 bits, tornando o modelo muito mais leve. O resultado final ocupa apenas **3,4 KB**, o suficiente para caber na memória flash de um microcontrolador.
 
 O modelo é armazenado como um array de bytes diretamente no código C, sendo compilado junto com o firmware.
 
@@ -46,7 +46,7 @@ A cada iteração, o programa:
 2. Passa esse valor pelo modelo e obtém a predição de `y`
 3. Imprime o par `(x, y)` no serial
 
-Os valores de `y` seguem a curva esperada do seno — próximos de zero no início, crescendo até ~1, voltando a zero, descendo até ~-1 e retornando. Isso confirma que o modelo aprendeu a aproximar corretamente a função seno, mesmo rodando de forma quantizada em um ambiente com memória extremamente limitada.
+Os valores de `y` seguem a curva esperada do seno, próximos de zero no início, crescendo até ~1, voltando a zero, descendo até ~-1 e retornando. Isso confirma que o modelo aprendeu a aproximar corretamente a função seno, mesmo rodando de forma quantizada em um ambiente com memória extremamente limitada.
 
 ---
 
